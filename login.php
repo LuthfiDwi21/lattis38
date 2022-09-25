@@ -14,7 +14,6 @@ include 'config.php';
     <div class="container" align="center">
         <div class="mt-5 rounded" style="width: 300px">
             <div class="mb-3 h4">Selamat Datang</div>
-
             <form action="proses_login.php" method="post">
                 <label>Username</label>
                 <input class="mb-2 w-100" type="text" name="username" />

@@ -1,7 +1,3 @@
-    <?php
-include 'config.php';
-?>
-
     <html>
 
     <head>
@@ -10,21 +6,19 @@ include 'config.php';
     </head>
 
     <body>
-        <br><br><br><br><br>
-        <div class="container" align="center">
+        <div class="container" style="margin-top : 200px" align="center">
             <div class="mt-5 rounded" style="width: 700px">
                 <div class="mb-3 h3">Selamat Datang di SKADIK 501</div>
 
                 <?php 
-            include("config.php");
-            session_start();
-            if(isset($_SESSION['username'],$_SESSION['img_profile'],$_SESSION['name'])) {
-                $image      = $_SESSION['img_profile'];
-                $username   = $_SESSION['username'];
-                $name       = $_SESSION['name'];
-                echo "Selamat Datang <b>",$name, "</b><br/>";
-                echo "<img src='",$image,"' class='mt-2' width='150px'/><br/>";
-                echo "<hr/><label class='h3'>Data User Account</label>";
+                    include("config.php");
+                                                                                                                                                                                                        session_start();
+                if(isset($_SESSION['username'])) {
+                    $username   = $_SESSION['username'];
+                    $loop   = mysqli_query($koneksi, 'SELECT * FROM akun');
+                    $data = mysqli_fetch_array($loop);
+                    echo "Selamat Datang <b>",$data['name'],"</b><br/>";
+                    echo "<hr/><label class='h3'>Data User Account</label>";
             ?>
                 <table class="table table-stripped">
                     <thead>
@@ -49,7 +43,7 @@ include 'config.php';
                         <td><?php echo $data['email'] ?></td>
                         <td><?php echo $data['role'] ?></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" href="editing.php?id=<?php echo $data->$id; ?>">Edit</a>
+                            <a class="btn btn-sm btn-primary" href="editing.php?id=<?php echo $data['id']; ?>">Edit</a>
                             <a class="btn btn-sm btn-primary"
                                 href="proses_delete.php?id=<?php echo $data['id']; ?>">Delete</a>
                         </td>
